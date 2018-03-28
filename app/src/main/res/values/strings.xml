@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Todoapp</string>
+    <string name="nav_detail">Your detail</string>
+    <string name="nav_about">About</string>
 </resources>
