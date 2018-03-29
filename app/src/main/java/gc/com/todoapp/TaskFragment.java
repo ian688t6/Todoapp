@@ -15,10 +15,11 @@ import android.view.ViewGroup;
  * Created by jyin on 3/28/18.
  */
 
-public class TaskFragment extends Fragment {
+public class TaskFragment extends Fragment implements TaskContract.View {
 
     private static final String TAG = "TaskFragment";
     private TodoAdapter m_adapter;
+    private TaskContract.Presenter m_presenter;
     public static TaskFragment newInstance() {
         return new TaskFragment();
     }
@@ -46,5 +47,17 @@ public class TaskFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(m_adapter);
+    }
+
+    @Override
+    public void showAddTodoList() {
+
+    }
+
+    @Override
+    public void setPresenter(TaskContract.Presenter presenter) {
+        if (presenter != null) {
+            m_presenter = presenter;
+        }
     }
 }
