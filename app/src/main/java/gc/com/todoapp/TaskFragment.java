@@ -3,6 +3,9 @@ package gc.com.todoapp;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,9 +18,17 @@ import android.view.ViewGroup;
 public class TaskFragment extends Fragment {
 
     private static final String TAG = "TaskFragment";
-
+    private TodoAdapter m_adapter;
     public static TaskFragment newInstance() {
         return new TaskFragment();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.e(TAG, "onCreate");
+        TodoApplication application = (TodoApplication) getActivity().getApplication();
+        m_adapter = new TodoAdapter(getContext(), application.getData());
     }
 
     @Nullable
@@ -25,6 +36,15 @@ public class TaskFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_content, container, false);
         Log.e(TAG, "TaskFragment create");
+        initRecycleView(root);
         return root;
+    }
+
+    public void initRecycleView(View root) {
+        RecyclerView recyclerView = root.findViewById(R.id.content_recycleview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setHasFixedSize(true);
+        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        recyclerView.setAdapter(m_adapter);
     }
 }

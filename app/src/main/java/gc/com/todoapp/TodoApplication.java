@@ -1,6 +1,7 @@
 package gc.com.todoapp;
 
 import android.app.Application;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,6 +25,7 @@ public class TodoApplication extends Application {
     }
 
     private void initData() {
+        Log.i(TAG, "initData");
         m_data = new ArrayList<>();
         {
             HashMap<String, Object> map = new HashMap<>();
