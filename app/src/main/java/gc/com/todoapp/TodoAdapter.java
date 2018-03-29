@@ -2,6 +2,7 @@ package gc.com.todoapp;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import java.util.HashMap;
  */
 
 public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder> {
+    private static final String TAG = "TodoAdapter";
     public static final String TITLE = "title";
     private ArrayList<HashMap<String, Object>> m_list;
     private Context m_context;
@@ -36,6 +38,18 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
     @Override
     public void onBindViewHolder(TodoViewHolder holder, int position) {
         holder.textView.setText(m_list.get(position).get(TITLE).toString());
+        holder.imageButtonSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e(TAG, "imageButtonSettings click");
+            }
+        });
+        holder.imageButtonDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e(TAG, "imageButtonDelete click");
+            }
+        });
     }
 
     @Override

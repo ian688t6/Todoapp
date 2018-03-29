@@ -1,6 +1,7 @@
 package gc.com.todoapp;
 
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -10,11 +11,12 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout m_drawerLayout;
-
+    private FloatingActionButton m_fab;
     private static final String TAG = "MainActivity";
 
     @Override
@@ -23,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initToolbar();
         initTaskFragment();
-        getApplicationContext();
+        initFloatingActionButton();
     }
 
     @Override
@@ -83,5 +85,15 @@ public class MainActivity extends AppCompatActivity {
             ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), taskFragment, R.id.contentFrame);
         }
 
+    }
+
+    private void initFloatingActionButton() {
+        m_fab = findViewById(R.id.fab);
+        m_fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e(TAG, "click fab");
+            }
+        });
     }
 }
