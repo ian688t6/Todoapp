@@ -19,7 +19,26 @@ public class TodoApplication extends Application {
         initData();
     }
 
-    private void initData() {
+    public ArrayList<HashMap<String, Object>> getData() {
+        return m_data;
+    }
 
+    private void initData() {
+        m_data = new ArrayList<>();
+        {
+            HashMap<String, Object> map = new HashMap<>();
+            map.put(TodoAdapter.TITLE, "Inbox");
+            m_data.add(map);
+        }
+        {
+            HashMap<String, Object> map = new HashMap<>();
+            map.put(TodoAdapter.TITLE, "Work");
+            m_data.add(map);
+        }
+        {
+            HashMap<String, Object> map = new HashMap<>();
+            map.put(TodoAdapter.TITLE, "Private");
+            m_data.add(map);
+        }
     }
 }
