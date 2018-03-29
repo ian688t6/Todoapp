@@ -16,7 +16,7 @@ import android.view.View;
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout m_drawerLayout;
-    private FloatingActionButton m_fab;
+
     private static final String TAG = "MainActivity";
 
     @Override
@@ -88,8 +88,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initFloatingActionButton() {
-        m_fab = findViewById(R.id.fab);
-        m_fab.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.e(TAG, "click fab");
