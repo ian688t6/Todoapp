@@ -1,5 +1,6 @@
 package gc.com.todoapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -63,6 +64,7 @@ public class TaskFragment extends Fragment implements TaskContract.View {
             @Override
             public void onClick(View v) {
                 Log.e(TAG, "click add list");
+                m_presenter.addTodoList();
             }
         });
     }
@@ -70,6 +72,7 @@ public class TaskFragment extends Fragment implements TaskContract.View {
     @Override
     public void showAddTodoList() {
         Log.e(TAG, "showAddTodoList");
+        startActivity(new Intent(getContext(), AddTodolistActivity.class));
     }
 
     @Override

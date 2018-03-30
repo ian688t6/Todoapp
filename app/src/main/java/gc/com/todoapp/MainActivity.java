@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.e(TAG, "click fab");
-                m_presenter.addTodoList();
+                //m_presenter.addTodoList();
             }
         });
     }

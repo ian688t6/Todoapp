@@ -4,4 +4,6 @@
     <string name="nav_about">About</string>
     <string name="nav_user">ian688t6</string>
     <string name="addlist">Add wunder list</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
 </resources>
