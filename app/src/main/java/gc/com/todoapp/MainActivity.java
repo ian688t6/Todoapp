@@ -16,7 +16,7 @@ import android.view.View;
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout m_drawerLayout;
-
+    private TaskPresenter m_presenter;
     private static final String TAG = "MainActivity";
 
     @Override
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), taskFragment, R.id.contentFrame);
         }
         TodoApplication application = (TodoApplication) getApplication();
-        new TaskPresenter(application.getData(), taskFragment);
+        m_presenter = new TaskPresenter(application.getData(), taskFragment);
     }
 
     private void initFloatingActionButton() {
@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.e(TAG, "click fab");
+                m_presenter.addTodoList();
             }
         });
     }

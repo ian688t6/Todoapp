@@ -69,7 +69,7 @@ public class TaskFragment extends Fragment implements TaskContract.View {
 
     @Override
     public void showAddTodoList() {
-
+        Log.e(TAG, "showAddTodoList");
     }
 
     @Override

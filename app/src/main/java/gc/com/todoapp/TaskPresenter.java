@@ -28,6 +28,6 @@ public class TaskPresenter implements TaskContract.Presenter {
 
     @Override
     public void addTodoList() {
-
+        m_taskView.showAddTodoList();
     }
 }
