@@ -27,12 +27,15 @@
             android:layout_gravity="center"/>
 
         <TextView
+            android:id="@+id/tv_addlist"
             android:layout_marginStart="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/addlist"
             android:textSize="16sp"
             android:textColor="@color/addlistColor"
+            android:clickable="true"
+            android:focusable="true"
             android:layout_gravity="center"/>
     </LinearLayout>
 

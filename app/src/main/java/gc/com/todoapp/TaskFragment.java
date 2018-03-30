@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 /**
  * Created by jyin on 3/28/18.
@@ -38,6 +39,7 @@ public class TaskFragment extends Fragment implements TaskContract.View {
         View root = inflater.inflate(R.layout.fragment_content, container, false);
         Log.e(TAG, "TaskFragment create");
         initRecycleView(root);
+        initAddlist(root);
         return root;
     }
 
@@ -47,6 +49,16 @@ public class TaskFragment extends Fragment implements TaskContract.View {
         recyclerView.setHasFixedSize(true);
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(m_adapter);
+    }
+
+    public void initAddlist(View root) {
+        TextView textView = root.findViewById(R.id.tv_addlist);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e(TAG, "click add list");
+            }
+        });
     }
 
     @Override
