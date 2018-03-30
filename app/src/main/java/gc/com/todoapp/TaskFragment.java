@@ -43,7 +43,13 @@ public class TaskFragment extends Fragment implements TaskContract.View {
         return root;
     }
 
-    public void initRecycleView(View root) {
+    @Override
+    public void onResume() {
+        super.onResume();
+        m_presenter.start();
+    }
+
+    private void initRecycleView(View root) {
         RecyclerView recyclerView = root.findViewById(R.id.content_recycleview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
@@ -51,7 +57,7 @@ public class TaskFragment extends Fragment implements TaskContract.View {
         recyclerView.setAdapter(m_adapter);
     }
 
-    public void initAddlist(View root) {
+    private void initAddlist(View root) {
         TextView textView = root.findViewById(R.id.tv_addlist);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +75,7 @@ public class TaskFragment extends Fragment implements TaskContract.View {
     @Override
     public void setPresenter(TaskContract.Presenter presenter) {
         if (presenter != null) {
+            Log.e(TAG, "setPresenter");
             m_presenter = presenter;
         }
     }
