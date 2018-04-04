@@ -12,7 +12,7 @@ import android.view.ViewGroup;
  * Created by jyin on 3/30/18.
  */
 
-public class TodolistFragment extends Fragment {
+public class TodolistFragment extends Fragment implements TodolistContract.View {
 
     private static final String TAG = "TodolistFragment";
     public static TodolistFragment newInstance() {
@@ -25,5 +25,20 @@ public class TodolistFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_todolist, container, false);
         Log.e(TAG, "TaskFragment create");
         return root;
+    }
+
+    @Override
+    public void setPresenter(TodolistContract.Presenter presenter) {
+
+    }
+
+    @Override
+    public void showTasksList() {
+
+    }
+
+    @Override
+    public void setTitle(String title) {
+
     }
 }

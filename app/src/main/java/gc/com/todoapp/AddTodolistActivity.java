@@ -4,7 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class AddTodolistActivity extends AppCompatActivity {
-
+    private static final String TAG = "AddTodolistActivity";
+    private TodolistPresenter m_presenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,5 +19,7 @@ public class AddTodolistActivity extends AppCompatActivity {
             todolistFragment = TodolistFragment.newInstance();
             ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), todolistFragment, R.id.addTodolistFrame);
         }
+        TodoApplication application = (TodoApplication) getApplication();
+        m_presenter = new TodolistPresenter(application.getData(), todolistFragment);
     }
 }
