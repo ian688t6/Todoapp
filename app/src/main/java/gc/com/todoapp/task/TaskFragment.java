@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import gc.com.todoapp.R;
 import gc.com.todoapp.todolist.AddTodolistActivity;
-import gc.com.todoapp.todolist.TodoAdapter;
 import gc.com.todoapp.TodoApplication;
 import gc.com.todoapp.db.TodoData;
 

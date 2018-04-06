@@ -1,4 +1,4 @@
-package gc.com.todoapp.todolist;
+package gc.com.todoapp.task;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
