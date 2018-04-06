@@ -26,7 +26,14 @@ public class TodolistPresenter implements TodolistContract.Presenter {
     }
 
     @Override
-    public void saveTask(String title, String description) {
+    public void saveTodolist(String title) {
+        createTodolist();
+        HashMap<String, Object> map = new HashMap<>();
+        map.put(TodoAdapter.TITLE, title);
+        m_data.add(map);
+    }
 
+    private void createTodolist() {
+        m_view.showTasksList();
     }
 }

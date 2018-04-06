@@ -6,6 +6,7 @@ import android.os.Bundle;
 public class AddTodolistActivity extends AppCompatActivity {
     private static final String TAG = "AddTodolistActivity";
     private TodolistPresenter m_presenter;
+    public static final int REQUEST_ADD_TODOLIST = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -11,6 +11,6 @@ public class TodolistContract {
     }
 
     interface Presenter extends BasePresenter {
-        void saveTask(String title, String description);
+        void saveTodolist(String title);
     }
 }

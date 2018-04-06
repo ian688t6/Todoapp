@@ -45,8 +45,15 @@ public class TaskFragment extends Fragment implements TaskContract.View {
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.e(TAG, "onActivityResult");
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
+        Log.e(TAG, "onResume");
         m_presenter.start();
     }
 
@@ -72,7 +79,7 @@ public class TaskFragment extends Fragment implements TaskContract.View {
     @Override
     public void showAddTodoList() {
         Log.e(TAG, "showAddTodoList");
-        startActivity(new Intent(getContext(), AddTodolistActivity.class));
+        startActivityForResult(new Intent(getContext(), AddTodolistActivity.class), AddTodolistActivity.REQUEST_ADD_TODOLIST);
     }
 
     @Override
@@ -81,5 +88,11 @@ public class TaskFragment extends Fragment implements TaskContract.View {
             Log.e(TAG, "setPresenter");
             m_presenter = presenter;
         }
+    }
+
+    @Override
+    public void showTodolist() {
+        Log.e(TAG, "showTodolist");
+        m_adapter.updateData();
     }
 }

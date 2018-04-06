@@ -24,6 +24,7 @@ public class TaskPresenter implements TaskContract.Presenter {
     @Override
     public void start() {
         Log.e(TAG, "start");
+        m_taskView.showTodolist();
     }
 
     @Override

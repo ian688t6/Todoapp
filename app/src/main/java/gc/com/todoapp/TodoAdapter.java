@@ -29,6 +29,11 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
         m_context = context;
     }
 
+    public void updateData() {
+        Log.e(TAG, "updateData");
+        notifyDataSetChanged();
+    }
+
     @Override
     public TodoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(m_context).inflate(R.layout.listitem, parent, false);
