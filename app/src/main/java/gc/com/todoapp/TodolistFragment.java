@@ -41,6 +41,7 @@ public class TodolistFragment extends Fragment implements TodolistContract.View 
             @Override
             public void onClick(View v) {
                 Log.e(TAG, "click cancel");
+                finishTodolist();
             }
         });
 
@@ -63,12 +64,16 @@ public class TodolistFragment extends Fragment implements TodolistContract.View 
 
     @Override
     public void showTasksList() {
-        getActivity().setResult(Activity.RESULT_OK);
-        getActivity().finish();
+        finishTodolist();
     }
 
     @Override
     public void setTitle(String title) {
         m_title.setText(title);
+    }
+
+    private void finishTodolist() {
+        getActivity().setResult(Activity.RESULT_OK);
+        getActivity().finish();
     }
 }
