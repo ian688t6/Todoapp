@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 public class TodolistFragment extends Fragment implements TodolistContract.View {
 
     private static final String TAG = "TodolistFragment";
+    private TodolistContract.Presenter m_presenter;
+
     public static TodolistFragment newInstance() {
         return new TodolistFragment();
     }
@@ -29,7 +31,7 @@ public class TodolistFragment extends Fragment implements TodolistContract.View 
 
     @Override
     public void setPresenter(TodolistContract.Presenter presenter) {
-
+        m_presenter = presenter;
     }
 
     @Override
