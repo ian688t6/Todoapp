@@ -3,6 +3,8 @@ package gc.com.todoapp;
 import android.app.Application;
 import android.util.Log;
 
+import com.raizlabs.android.dbflow.config.FlowManager;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -18,10 +20,15 @@ public class TodoApplication extends Application {
     public void onCreate() {
         super.onCreate();
         initData();
+        initDataBase();
     }
 
     public ArrayList<HashMap<String, Object>> getData() {
         return m_data;
+    }
+
+    private void initDataBase() {
+        FlowManager.init(this);
     }
 
     private void initData() {
