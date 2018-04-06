@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import gc.com.todoapp.db.TodoData;
+
 /**
  * Created by jyin on 4/4/18.
  */
@@ -27,10 +29,14 @@ public class TodolistPresenter implements TodolistContract.Presenter {
 
     @Override
     public void saveTodolist(String title) {
+        TodoData data = new TodoData();
+        data.m_title = title;
+        data.save();
+
         createTodolist();
-        HashMap<String, Object> map = new HashMap<>();
-        map.put(TodoAdapter.TITLE, title);
-        m_data.add(map);
+//        HashMap<String, Object> map = new HashMap<>();
+//        map.put(TodoAdapter.TITLE, title);
+//        m_data.add(map);
     }
 
     private void createTodolist() {

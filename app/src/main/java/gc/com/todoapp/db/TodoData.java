@@ -13,11 +13,7 @@ public class TodoData extends BaseModel {
     @Column
     public String m_title;
 
-    @Column
-    public String m_description;
-
     public void insertData(String title, String description) {
         m_title = title;
-        m_description = description;
     }
 }

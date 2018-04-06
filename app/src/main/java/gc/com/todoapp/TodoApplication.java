@@ -4,9 +4,13 @@ import android.app.Application;
 import android.util.Log;
 
 import com.raizlabs.android.dbflow.config.FlowManager;
+import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
+import gc.com.todoapp.db.TodoData;
 
 /**
  * Created by jyin on 3/29/18.
@@ -19,7 +23,6 @@ public class TodoApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        initData();
         initDataBase();
     }
 
@@ -31,23 +34,8 @@ public class TodoApplication extends Application {
         FlowManager.init(this);
     }
 
-    private void initData() {
-        Log.i(TAG, "initData");
-        m_data = new ArrayList<>();
-        {
-            HashMap<String, Object> map = new HashMap<>();
-            map.put(TodoAdapter.TITLE, "Inbox");
-            m_data.add(map);
-        }
-        {
-            HashMap<String, Object> map = new HashMap<>();
-            map.put(TodoAdapter.TITLE, "Work");
-            m_data.add(map);
-        }
-        {
-            HashMap<String, Object> map = new HashMap<>();
-            map.put(TodoAdapter.TITLE, "Private");
-            m_data.add(map);
-        }
+    public List<TodoData> getDatabase() {
+        return SQLite.select().from(TodoData.class).queryList();
     }
+
 }

@@ -15,10 +15,12 @@ public class TaskPresenter implements TaskContract.Presenter {
     private final ArrayList<HashMap<String, Object>> m_data;
     private final TaskContract.View m_taskView;
 
+
     public TaskPresenter(@NonNull ArrayList<HashMap<String, Object>> data, @NonNull TaskContract.View taskView) {
         m_data = data;
         m_taskView = taskView;
         m_taskView.setPresenter(this);
+
     }
 
     @Override

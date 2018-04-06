@@ -11,22 +11,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.daimajia.swipe.SwipeLayout;
+import com.raizlabs.android.dbflow.sql.language.SQLite;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 
-/**
- * Created by jyin on 3/29/18.
- */
+import gc.com.todoapp.db.TodoData;
+import gc.com.todoapp.db.TodoData_Table;
 
-public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder> {
-    private static final String TAG = "TodoAdapter";
-    public static final String TITLE = "title";
-    private ArrayList<HashMap<String, Object>> m_list;
+public class TodoAdapter<Data> extends RecyclerView.Adapter<TodoAdapter.TodolistViewHolder<Data>> {
+
     private Context m_context;
-    public TodoAdapter(Context context, ArrayList<HashMap<String, Object>> list) {
-        m_list = list;
+    private List<Data> m_list;
+    private static final String TAG = "TodolistAdapter";
+
+    public TodoAdapter(Context context, List<Data> list) {
         m_context = context;
+        m_list = list;
     }
 
     public void updateData() {
@@ -34,15 +34,21 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
         notifyDataSetChanged();
     }
 
-    @Override
-    public TodoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(m_context).inflate(R.layout.listitem, parent, false);
-        return new TodoViewHolder(view);
+    public void replaceData(List<Data> list) {
+        m_list = list;
+        notifyDataSetChanged();
     }
 
     @Override
-    public void onBindViewHolder(final TodoViewHolder holder, final int position) {
-        holder.textView.setText(m_list.get(position).get(TITLE).toString());
+    public TodolistViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(m_context).inflate(R.layout.listitem, parent, false);
+        return new TodolistViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(final TodolistViewHolder holder, final int position) {
+        final TodoData data = (TodoData) m_list.get(position);
+        holder.textView.setText(data.m_title);
         holder.imageButtonSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,10 +59,21 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
             @Override
             public void onClick(View v) {
                 Log.e(TAG, "imageButtonDelete click " + holder.textView.getText());
+
+                SQLite.delete()
+                        .from(TodoData.class)
+                        .where(TodoData_Table.id.eq(data.id))
+                        .query();
                 m_list.remove(position);
                 notifyDataSetChanged();
             }
         });
+
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return super.getItemViewType(position);
     }
 
     @Override
@@ -64,15 +81,14 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
         return m_list.size();
     }
 
-    public static class TodoViewHolder extends RecyclerView.ViewHolder {
-
+    public static class TodolistViewHolder<Data> extends RecyclerView.ViewHolder {
         private SwipeLayout swipeLayout;
         private ImageView imageView;
         private ImageButton imageButtonDelete;
         private ImageButton imageButtonSettings;
         private TextView textView;
 
-        public TodoViewHolder(View itemView) {
+        public TodolistViewHolder(View itemView) {
             super(itemView);
             swipeLayout = itemView.findViewById(R.id.swipe_layout);
             imageView = itemView.findViewById(R.id.img_list);

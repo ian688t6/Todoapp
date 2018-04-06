@@ -1,5 +1,6 @@
 package gc.com.todoapp;
 
+import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import gc.com.todoapp.db.TodoData;
+
 /**
  * Created by jyin on 3/28/18.
  */
@@ -20,7 +23,7 @@ import android.widget.TextView;
 public class TaskFragment extends Fragment implements TaskContract.View {
 
     private static final String TAG = "TaskFragment";
-    private TodoAdapter m_adapter;
+    private TodoAdapter<TodoData> m_adapter;
     private TaskContract.Presenter m_presenter;
     public static TaskFragment newInstance() {
         return new TaskFragment();
@@ -31,7 +34,7 @@ public class TaskFragment extends Fragment implements TaskContract.View {
         super.onCreate(savedInstanceState);
         Log.e(TAG, "onCreate");
         TodoApplication application = (TodoApplication) getActivity().getApplication();
-        m_adapter = new TodoAdapter(getContext(), application.getData());
+        m_adapter = new TodoAdapter<TodoData>(getContext(), application.getDatabase());
     }
 
     @Nullable
@@ -93,6 +96,7 @@ public class TaskFragment extends Fragment implements TaskContract.View {
     @Override
     public void showTodolist() {
         Log.e(TAG, "showTodolist");
-        m_adapter.updateData();
+        TodoApplication application = (TodoApplication) getActivity().getApplication();
+        m_adapter.replaceData(application.getDatabase());
     }
 }
