@@ -17,17 +17,12 @@ import gc.com.todoapp.db.TodoData;
  */
 
 public class TodoApplication extends Application {
-    private ArrayList<HashMap<String, Object>> m_data;
     private static final String TAG = "TodoApplication";
 
     @Override
     public void onCreate() {
         super.onCreate();
         initDataBase();
-    }
-
-    public ArrayList<HashMap<String, Object>> getData() {
-        return m_data;
     }
 
     private void initDataBase() {
