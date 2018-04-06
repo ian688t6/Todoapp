@@ -13,11 +13,9 @@ import gc.com.todoapp.db.TodoData;
 
 public class TodolistPresenter implements TodolistContract.Presenter {
     private static final String TAG = "TodolistPresenter";
-    private final ArrayList<HashMap<String, Object>> m_data;
     private final TodolistContract.View m_view;
 
-    public TodolistPresenter(@NonNull ArrayList<HashMap<String, Object>> data, @NonNull TodolistContract.View todolistView) {
-        m_data = data;
+    public TodolistPresenter(@NonNull TodolistContract.View todolistView) {
         m_view = todolistView;
         m_view.setPresenter(this);
     }

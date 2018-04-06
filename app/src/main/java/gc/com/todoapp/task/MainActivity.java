@@ -89,8 +89,7 @@ public class MainActivity extends AppCompatActivity {
             taskFragment = TaskFragment.newInstance();
             ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), taskFragment, R.id.contentFrame);
         }
-        TodoApplication application = (TodoApplication) getApplication();
-        m_presenter = new TaskPresenter(application.getData(), taskFragment);
+        m_presenter = new TaskPresenter(taskFragment);
     }
 
     private void initFloatingActionButton() {

@@ -14,12 +14,10 @@ import gc.com.todoapp.task.TaskContract;
 
 public class TaskPresenter implements TaskContract.Presenter {
     private static final String TAG = "TaskPresenter";
-    private final ArrayList<HashMap<String, Object>> m_data;
     private final TaskContract.View m_taskView;
 
 
-    public TaskPresenter(@NonNull ArrayList<HashMap<String, Object>> data, @NonNull TaskContract.View taskView) {
-        m_data = data;
+    public TaskPresenter(@NonNull TaskContract.View taskView) {
         m_taskView = taskView;
         m_taskView.setPresenter(this);
 

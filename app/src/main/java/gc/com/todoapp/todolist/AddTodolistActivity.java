@@ -24,7 +24,6 @@ public class AddTodolistActivity extends AppCompatActivity {
             todolistFragment = TodolistFragment.newInstance();
             ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), todolistFragment, R.id.addTodolistFrame);
         }
-        TodoApplication application = (TodoApplication) getApplication();
-        m_presenter = new TodolistPresenter(application.getData(), todolistFragment);
+        m_presenter = new TodolistPresenter(todolistFragment);
     }
 }
