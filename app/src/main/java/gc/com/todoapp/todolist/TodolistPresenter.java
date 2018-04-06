@@ -1,4 +1,4 @@
-package gc.com.todoapp;
+package gc.com.todoapp.todolist;
 
 import android.support.annotation.NonNull;
 

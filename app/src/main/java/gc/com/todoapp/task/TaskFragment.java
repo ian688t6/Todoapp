@@ -1,6 +1,5 @@
-package gc.com.todoapp;
+package gc.com.todoapp.task;
 
-import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,6 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import gc.com.todoapp.R;
+import gc.com.todoapp.todolist.AddTodolistActivity;
+import gc.com.todoapp.todolist.TodoAdapter;
+import gc.com.todoapp.TodoApplication;
 import gc.com.todoapp.db.TodoData;
 
 /**

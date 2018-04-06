@@ -1,4 +1,7 @@
-package gc.com.todoapp;
+package gc.com.todoapp.todolist;
+
+import gc.com.todoapp.BasePresenter;
+import gc.com.todoapp.BaseView;
 
 /**
  * Created by jyin on 4/4/18.

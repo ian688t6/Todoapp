@@ -1,4 +1,4 @@
-package gc.com.todoapp;
+package gc.com.todoapp.todolist;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import gc.com.todoapp.R;
 
 /**
  * Created by jyin on 3/30/18.

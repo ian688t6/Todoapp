@@ -1,10 +1,12 @@
-package gc.com.todoapp;
+package gc.com.todoapp.task;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import gc.com.todoapp.task.TaskContract;
 
 /**
  * Created by jyin on 3/30/18.

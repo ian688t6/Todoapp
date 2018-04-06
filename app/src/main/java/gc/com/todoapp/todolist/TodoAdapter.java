@@ -1,4 +1,4 @@
-package gc.com.todoapp;
+package gc.com.todoapp.todolist;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +15,7 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import java.util.List;
 
+import gc.com.todoapp.R;
 import gc.com.todoapp.db.TodoData;
 import gc.com.todoapp.db.TodoData_Table;
 

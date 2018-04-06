@@ -1,4 +1,4 @@
-package gc.com.todoapp;
+package gc.com.todoapp.task;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -12,6 +12,10 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+
+import gc.com.todoapp.ActivityUtils;
+import gc.com.todoapp.R;
+import gc.com.todoapp.TodoApplication;
 
 public class MainActivity extends AppCompatActivity {
 
