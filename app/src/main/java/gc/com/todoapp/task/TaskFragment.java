@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import gc.com.todoapp.R;
+import gc.com.todoapp.tasklist.TasklistActivity;
 import gc.com.todoapp.todolist.AddTodolistActivity;
 import gc.com.todoapp.TodoApplication;
 import gc.com.todoapp.db.TodoData;
@@ -107,5 +108,8 @@ public class TaskFragment extends Fragment implements TaskContract.View, TodoAda
     public void onClick(Object o) {
         TodoData data = (TodoData)o;
         Log.e(TAG, "click " + String.valueOf(data.id));
+        Intent intent = new Intent(getContext(), TasklistActivity.class);
+        intent.putExtra(TasklistActivity.ARG_ID, data.id);
+        startActivityForResult(intent, TasklistActivity.REQUEST_ADD_TASKLIST);
     }
 }
