@@ -22,7 +22,7 @@ import gc.com.todoapp.db.TodoData;
  * Created by jyin on 3/28/18.
  */
 
-public class TaskFragment extends Fragment implements TaskContract.View {
+public class TaskFragment extends Fragment implements TaskContract.View, TodoAdapter.TodoAdapterCallback {
 
     private static final String TAG = "TaskFragment";
     private TodoAdapter<TodoData> m_adapter;
@@ -37,6 +37,7 @@ public class TaskFragment extends Fragment implements TaskContract.View {
         Log.e(TAG, "onCreate");
         TodoApplication application = (TodoApplication) getActivity().getApplication();
         m_adapter = new TodoAdapter<TodoData>(getContext(), application.getDatabase());
+        m_adapter.setCallback(this);
     }
 
     @Nullable
@@ -100,5 +101,11 @@ public class TaskFragment extends Fragment implements TaskContract.View {
         Log.e(TAG, "showTodolist");
         TodoApplication application = (TodoApplication) getActivity().getApplication();
         m_adapter.replaceData(application.getDatabase());
+    }
+
+    @Override
+    public void onClick(Object o) {
+        TodoData data = (TodoData)o;
+        Log.e(TAG, "click " + String.valueOf(data.id));
     }
 }

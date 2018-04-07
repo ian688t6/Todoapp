@@ -20,15 +20,20 @@ import gc.com.todoapp.db.TaskData;
 import gc.com.todoapp.db.TodoData;
 import gc.com.todoapp.db.TodoData_Table;
 
-public class TodoAdapter<Data> extends RecyclerView.Adapter<TodoAdapter.TodolistViewHolder<Data>> {
+public class TodoAdapter<Data> extends RecyclerView.Adapter<TodoAdapter.TodolistViewHolder<Data>> implements View.OnClickListener {
 
     private Context m_context;
     private List<Data> m_list;
+    private TodoAdapterCallback m_callback;
     private static final String TAG = "TodolistAdapter";
 
     public TodoAdapter(Context context, List<Data> list) {
         m_context = context;
         m_list = list;
+    }
+
+    public void setCallback(TodoAdapterCallback callback) {
+        m_callback = callback;
     }
 
     public void updateData() {
@@ -47,7 +52,10 @@ public class TodoAdapter<Data> extends RecyclerView.Adapter<TodoAdapter.Todolist
     @Override
     public TodolistViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(m_context).inflate(R.layout.listitem, parent, false);
-        return new TodolistViewHolder(view);
+        TodolistViewHolder holder = new TodolistViewHolder(view);
+        view.setTag(R.id.tag_recycler_holder, holder);
+        view.setOnClickListener(this);
+        return holder;
     }
 
     @Override
@@ -87,6 +95,21 @@ public class TodoAdapter<Data> extends RecyclerView.Adapter<TodoAdapter.Todolist
     @Override
     public int getItemCount() {
         return m_list.size();
+    }
+
+    @Override
+    public void onClick(View v) {
+        TodolistViewHolder viewHolder = (TodolistViewHolder) v.getTag(R.id.tag_recycler_holder);
+        int pos = viewHolder.getAdapterPosition();
+        Data data = m_list.get(pos);
+        Log.e(TAG, "click view pos" + String.valueOf(pos) + " data: " + data.toString());
+        if (m_callback != null) {
+            m_callback.onClick(data);
+        }
+    }
+
+    public interface TodoAdapterCallback<Data> {
+        void onClick(Data data);
     }
 
     public static class TodolistViewHolder<Data> extends RecyclerView.ViewHolder {
