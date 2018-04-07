@@ -1,16 +1,20 @@
 package gc.com.todoapp.tasklist;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import gc.com.todoapp.R;
 
-public class TasklistFragment extends Fragment {
+public class TasklistFragment extends Fragment implements TasklistContract.View {
+    private TasklistContract.Presenter m_presenter;
+    private static final String TAG = "TasklistFragment";
 
     public static TasklistFragment newInstance() {
         return new TasklistFragment();
@@ -19,6 +23,14 @@ public class TasklistFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        TasklistActivity activity = (TasklistActivity)context;
+        Log.e(TAG, "id " + String.valueOf(activity.getId()));
     }
 
     @Nullable
@@ -31,10 +43,29 @@ public class TasklistFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.e(TAG, "onActivityResult");
     }
 
     @Override
     public void onResume() {
         super.onResume();
+    }
+
+    @Override
+    public void showAddTasklist() {
+
+    }
+
+    @Override
+    public void showTasklist() {
+
+    }
+
+    @Override
+    public void setPresenter(TasklistContract.Presenter presenter) {
+        if (presenter != null) {
+            Log.e(TAG, "setPresenter");
+            m_presenter = presenter;
+        }
     }
 }

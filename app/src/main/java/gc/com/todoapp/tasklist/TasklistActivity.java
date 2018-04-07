@@ -11,6 +11,7 @@ import gc.com.todoapp.R;
 public class TasklistActivity extends AppCompatActivity {
     public static final String ARG_ID = "argid";
     public static final int REQUEST_ADD_TASKLIST = 1;
+    private long m_id;
     private static final String TAG = "TasklistActivity";
 
     @Override
@@ -18,9 +19,13 @@ public class TasklistActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tasklist);
         Intent intent = getIntent();
-        long id = intent.getLongExtra(ARG_ID, 0);
-        Log.e(TAG, "id = " + String.valueOf(id));
+        m_id = intent.getLongExtra(ARG_ID, 0);
+        Log.e(TAG, "id = " + String.valueOf(m_id));
         initTaskFragment();
+    }
+
+    public long getId() {
+        return m_id;
     }
 
     private void initTaskFragment() {
