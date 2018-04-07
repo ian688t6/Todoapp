@@ -7,7 +7,7 @@
     android:id="@+id/add_todolist_content_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".todolist.AddTodolistActivity"
+    tools:context=".todo.TodoActivity"
     tools:openDrawer="start">
 
     <LinearLayout

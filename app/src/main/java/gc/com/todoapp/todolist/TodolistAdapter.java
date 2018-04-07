@@ -1,4 +1,4 @@
-package gc.com.todoapp.todo;
+package gc.com.todoapp.todolist;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -20,14 +20,14 @@ import gc.com.todoapp.db.TaskData;
 import gc.com.todoapp.db.TodoData;
 import gc.com.todoapp.db.TodoData_Table;
 
-public class TodoAdapter<Data> extends RecyclerView.Adapter<TodoAdapter.TodolistViewHolder<Data>> implements View.OnClickListener {
+public class TodolistAdapter<Data> extends RecyclerView.Adapter<TodolistAdapter.TodolistViewHolder<Data>> implements View.OnClickListener {
 
     private Context m_context;
     private List<Data> m_list;
     private TodoAdapterCallback m_callback;
     private static final String TAG = "TodolistAdapter";
 
-    public TodoAdapter(Context context, List<Data> list) {
+    public TodolistAdapter(Context context, List<Data> list) {
         m_context = context;
         m_list = list;
     }

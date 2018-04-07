@@ -1,9 +1,12 @@
 package gc.com.todoapp.todolist;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,71 +14,102 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import gc.com.todoapp.R;
+import gc.com.todoapp.tasklist.TasklistActivity;
+import gc.com.todoapp.todo.TodoActivity;
+import gc.com.todoapp.TodoApplication;
+import gc.com.todoapp.db.TodoData;
 
 /**
- * Created by jyin on 3/30/18.
+ * Created by jyin on 3/28/18.
  */
 
-public class TodolistFragment extends Fragment implements TodolistContract.View {
+public class TodolistFragment extends Fragment implements TodolistContract.View, TodolistAdapter.TodoAdapterCallback {
 
-    private static final String TAG = "TodolistFragment";
+    private static final String TAG = "TodoFragment";
+    private TodolistAdapter<TodoData> m_adapter;
     private TodolistContract.Presenter m_presenter;
-    private TextView m_title;
-
     public static TodolistFragment newInstance() {
         return new TodolistFragment();
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        TextView textView = getActivity().findViewById(R.id.tv_confirm);
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e(TAG, "click confirm " + m_title.getText());
-                m_presenter.saveTodolist(m_title.getText().toString());
-            }
-        });
-
-        textView = getActivity().findViewById(R.id.tv_cancel);
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e(TAG, "click cancel");
-                finishTodolist();
-            }
-        });
-
-
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.e(TAG, "onCreate");
+        TodoApplication application = (TodoApplication) getActivity().getApplication();
+        m_adapter = new TodolistAdapter<TodoData>(getContext(), application.getDatabase());
+        m_adapter.setCallback(this);
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_todolist, container, false);
+        View root = inflater.inflate(R.layout.fragment_content, container, false);
         Log.e(TAG, "TodoFragment create");
-        m_title = root.findViewById(R.id.et_title);
+        initRecycleView(root);
+        initAddlist(root);
         return root;
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.e(TAG, "onActivityResult");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.e(TAG, "onResume");
+        m_presenter.start();
+    }
+
+    private void initRecycleView(View root) {
+        RecyclerView recyclerView = root.findViewById(R.id.content_recycleview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setHasFixedSize(true);
+        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        recyclerView.setAdapter(m_adapter);
+    }
+
+    private void initAddlist(View root) {
+        TextView textView = root.findViewById(R.id.tv_addlist);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e(TAG, "click add list");
+                m_presenter.addTodoList();
+            }
+        });
+    }
+
+    @Override
+    public void showAddTodoList() {
+        Log.e(TAG, "showAddTodoList");
+        startActivityForResult(new Intent(getContext(), TodoActivity.class), TodoActivity.REQUEST_ADD_TODOLIST);
+    }
+
+    @Override
     public void setPresenter(TodolistContract.Presenter presenter) {
-        m_presenter = presenter;
+        if (presenter != null) {
+            Log.e(TAG, "setPresenter");
+            m_presenter = presenter;
+        }
     }
 
     @Override
-    public void showTasksList() {
-        finishTodolist();
+    public void showTodolist() {
+        Log.e(TAG, "showTodolist");
+        TodoApplication application = (TodoApplication) getActivity().getApplication();
+        m_adapter.replaceData(application.getDatabase());
     }
 
     @Override
-    public void setTitle(String title) {
-        m_title.setText(title);
-    }
-
-    private void finishTodolist() {
-        getActivity().setResult(Activity.RESULT_OK);
-        getActivity().finish();
+    public void onClick(Object o) {
+        TodoData data = (TodoData)o;
+        Log.e(TAG, "click " + String.valueOf(data.id));
+        Intent intent = new Intent(getContext(), TasklistActivity.class);
+        intent.putExtra(TasklistActivity.ARG_ID, data.id);
+        startActivityForResult(intent, TasklistActivity.REQUEST_ADD_TASKLIST);
     }
 }

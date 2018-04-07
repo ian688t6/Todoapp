@@ -3,13 +3,17 @@ package gc.com.todoapp.todo;
 import gc.com.todoapp.BasePresenter;
 import gc.com.todoapp.BaseView;
 
-public interface TodoContract {
+/**
+ * Created by jyin on 4/4/18.
+ */
+
+public class TodoContract {
     interface View extends BaseView<Presenter> {
-        void showAddTodoList();
-        void showTodolist();
+        void showTasksList();
+        void setTitle(String title);
     }
 
     interface Presenter extends BasePresenter {
-        void addTodoList();
+        void saveTodolist(String title);
     }
 }
