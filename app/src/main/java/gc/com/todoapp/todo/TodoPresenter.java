@@ -27,15 +27,15 @@ public class TodoPresenter implements TodoContract.Presenter {
 
     @Override
     public void saveTodolist(String title) {
-        TaskData task = new TaskData();
-        task.content = "abc";
+//        TaskData task = new TaskData();
+//        task.content = "abc";
 
         TodoData data = new TodoData();
         data.title = title;
         data.tasks = new ArrayList<>();
-        data.tasks.add(task);
-
-        task.todo = data;
+//        data.tasks.add(task);
+//
+//        task.todo = data;
 
         data.save();
 

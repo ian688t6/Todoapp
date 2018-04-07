@@ -53,7 +53,7 @@ public class TodoFragment extends Fragment implements TodoContract.View {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_todolist, container, false);
+        View root = inflater.inflate(R.layout.fragment_todo, container, false);
         Log.e(TAG, "TodoFragment create");
         m_title = root.findViewById(R.id.et_title);
         return root;

@@ -1,16 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
-    <ImageView
-        android:id="@+id/img_todolist"
-        android:layout_margin="@dimen/fab_margin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_todolist" />
-    <EditText
-        android:id="@+id/et_title"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context=".todolist.TodolistActivity">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/content_recycleview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/add_list"
+            android:src="@drawable/ic_addlist"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/tv_addlist"
+            android:layout_marginStart="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/addlist"
+            android:textSize="16sp"
+            android:textColor="@color/addlistColor"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+
+
 </LinearLayout>

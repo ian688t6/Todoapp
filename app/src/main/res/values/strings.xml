@@ -7,4 +7,5 @@
     <string name="cancel">Cancel</string>
     <string name="confirm">Confirm</string>
     <string name="newlist">NewList</string>
+    <string name="newtask">Add new task</string>
 </resources>

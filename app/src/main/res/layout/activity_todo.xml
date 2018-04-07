@@ -8,6 +8,6 @@
     android:fitsSystemWindows="true"
     tools:context="gc.com.todoapp.todo.TodoActivity">
 
-    <include layout="@layout/include_todolist_view"/>
+    <include layout="@layout/include_todo_view"/>
 
 </android.support.v4.widget.DrawerLayout>
