@@ -1,9 +1,9 @@
-package gc.com.todoapp.task;
+package gc.com.todoapp.todo;
 
 import gc.com.todoapp.BasePresenter;
 import gc.com.todoapp.BaseView;
 
-public interface TaskContract {
+public interface TodoContract {
     interface View extends BaseView<Presenter> {
         void showAddTodoList();
         void showTodolist();

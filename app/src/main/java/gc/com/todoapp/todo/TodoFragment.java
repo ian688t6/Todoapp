@@ -1,4 +1,4 @@
-package gc.com.todoapp.task;
+package gc.com.todoapp.todo;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,13 +23,13 @@ import gc.com.todoapp.db.TodoData;
  * Created by jyin on 3/28/18.
  */
 
-public class TaskFragment extends Fragment implements TaskContract.View, TodoAdapter.TodoAdapterCallback {
+public class TodoFragment extends Fragment implements TodoContract.View, TodoAdapter.TodoAdapterCallback {
 
-    private static final String TAG = "TaskFragment";
+    private static final String TAG = "TodoFragment";
     private TodoAdapter<TodoData> m_adapter;
-    private TaskContract.Presenter m_presenter;
-    public static TaskFragment newInstance() {
-        return new TaskFragment();
+    private TodoContract.Presenter m_presenter;
+    public static TodoFragment newInstance() {
+        return new TodoFragment();
     }
 
     @Override
@@ -45,7 +45,7 @@ public class TaskFragment extends Fragment implements TaskContract.View, TodoAda
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_content, container, false);
-        Log.e(TAG, "TaskFragment create");
+        Log.e(TAG, "TodoFragment create");
         initRecycleView(root);
         initAddlist(root);
         return root;
@@ -90,7 +90,7 @@ public class TaskFragment extends Fragment implements TaskContract.View, TodoAda
     }
 
     @Override
-    public void setPresenter(TaskContract.Presenter presenter) {
+    public void setPresenter(TodoContract.Presenter presenter) {
         if (presenter != null) {
             Log.e(TAG, "setPresenter");
             m_presenter = presenter;

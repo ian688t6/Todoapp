@@ -54,7 +54,7 @@ public class TodolistFragment extends Fragment implements TodolistContract.View 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_todolist, container, false);
-        Log.e(TAG, "TaskFragment create");
+        Log.e(TAG, "TodoFragment create");
         m_title = root.findViewById(R.id.et_title);
         return root;
     }

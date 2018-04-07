@@ -1,4 +1,4 @@
-package gc.com.todoapp.task;
+package gc.com.todoapp.todo;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -13,21 +13,14 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.raizlabs.android.dbflow.sql.language.SQLite;
-
-import java.util.List;
-
 import gc.com.todoapp.ActivityUtils;
 import gc.com.todoapp.R;
-import gc.com.todoapp.TodoApplication;
-import gc.com.todoapp.db.TaskData;
-import gc.com.todoapp.db.TodoData;
 
-public class MainActivity extends AppCompatActivity {
+public class TodoActivity extends AppCompatActivity {
 
     private DrawerLayout m_drawerLayout;
-    private TaskPresenter m_presenter;
-    private static final String TAG = "MainActivity";
+    private TodoPresenter m_presenter;
+    private static final String TAG = "TodoActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,12 +94,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initTaskFragment() {
-        TaskFragment taskFragment = (TaskFragment) getSupportFragmentManager().findFragmentById(R.id.contentFrame);
-        if (taskFragment == null) {
-            taskFragment = TaskFragment.newInstance();
-            ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), taskFragment, R.id.contentFrame);
+        TodoFragment todoFragment = (TodoFragment) getSupportFragmentManager().findFragmentById(R.id.contentFrame);
+        if (todoFragment == null) {
+            todoFragment = TodoFragment.newInstance();
+            ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), todoFragment, R.id.contentFrame);
         }
-        m_presenter = new TaskPresenter(taskFragment);
+        m_presenter = new TodoPresenter(todoFragment);
     }
 
     private void initFloatingActionButton() {
