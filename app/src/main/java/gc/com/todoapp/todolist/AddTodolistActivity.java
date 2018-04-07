@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import gc.com.todoapp.ActivityUtils;
 import gc.com.todoapp.R;
-import gc.com.todoapp.TodoApplication;
 
 public class AddTodolistActivity extends AppCompatActivity {
     private static final String TAG = "AddTodolistActivity";
