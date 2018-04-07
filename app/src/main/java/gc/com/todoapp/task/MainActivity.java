@@ -13,9 +13,15 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.raizlabs.android.dbflow.sql.language.SQLite;
+
+import java.util.List;
+
 import gc.com.todoapp.ActivityUtils;
 import gc.com.todoapp.R;
 import gc.com.todoapp.TodoApplication;
+import gc.com.todoapp.db.TaskData;
+import gc.com.todoapp.db.TodoData;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,6 +36,17 @@ public class MainActivity extends AppCompatActivity {
         initToolbar();
         initTaskFragment();
         initFloatingActionButton();
+//
+//        List<TodoData> todoDataList = SQLite.select()
+//                .from(TodoData.class)
+//                .queryList();
+//        for (TodoData t : todoDataList) {
+//            android.util.Log.e("mf", "Queen=" + t);
+//            for (TaskData task : t.tasks) {
+//                android.util.Log.e("mf", "Ant=" + task);
+//            }
+//        }
+
     }
 
     @Override

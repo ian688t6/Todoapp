@@ -16,6 +16,7 @@ import com.raizlabs.android.dbflow.sql.language.SQLite;
 import java.util.List;
 
 import gc.com.todoapp.R;
+import gc.com.todoapp.db.TaskData;
 import gc.com.todoapp.db.TodoData;
 import gc.com.todoapp.db.TodoData_Table;
 
@@ -37,6 +38,9 @@ public class TodoAdapter<Data> extends RecyclerView.Adapter<TodoAdapter.Todolist
 
     public void replaceData(List<Data> list) {
         m_list = list;
+        for (Data todo : m_list) {
+            Log.e(TAG, todo.toString());
+        }
         notifyDataSetChanged();
     }
 
@@ -49,7 +53,10 @@ public class TodoAdapter<Data> extends RecyclerView.Adapter<TodoAdapter.Todolist
     @Override
     public void onBindViewHolder(final TodolistViewHolder holder, final int position) {
         final TodoData data = (TodoData) m_list.get(position);
-        holder.textView.setText(data.m_title);
+        holder.textView.setText(data.title);
+        for (TaskData task : data.tasks) {
+            Log.e(TAG, "task: " + task.content);
+        }
         holder.imageButtonSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
