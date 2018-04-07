@@ -10,7 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
 import gc.com.todoapp.R;
+import gc.com.todoapp.db.TaskData;
 
 public class TasklistFragment extends Fragment implements TasklistContract.View {
     private TasklistContract.Presenter m_presenter;
@@ -23,7 +26,11 @@ public class TasklistFragment extends Fragment implements TasklistContract.View 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Log.e(TAG, "onCreate");
+        List<TaskData>list =  m_presenter.queryTasklist(((TasklistActivity)getActivity()).getId());
+        for (TaskData t : list) {
+            Log.e(TAG, t.toString());
+        }
     }
 
     @Override

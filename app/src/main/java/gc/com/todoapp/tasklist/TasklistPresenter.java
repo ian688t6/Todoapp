@@ -33,6 +33,6 @@ public class TasklistPresenter implements TasklistContract.Presenter {
                 .from(TodoData.class)
                 .where(TodoData_Table.id.eq(id))
                 .querySingle();
-        return todo.tasks;
+        return todo.getTasks();
     }
 }

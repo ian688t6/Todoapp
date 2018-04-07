@@ -12,6 +12,7 @@ public class TasklistActivity extends AppCompatActivity {
     public static final String ARG_ID = "argid";
     public static final int REQUEST_ADD_TASKLIST = 1;
     private long m_id;
+    private TasklistPresenter m_presenter;
     private static final String TAG = "TasklistActivity";
 
     @Override
@@ -34,6 +35,7 @@ public class TasklistActivity extends AppCompatActivity {
             fragment = TasklistFragment.newInstance();
             ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), fragment, R.id.tasklist_frame);
         }
+        m_presenter = new TasklistPresenter(fragment);
     }
 
 }
