@@ -6,6 +6,7 @@
     <string name="addlist">Add todo list</string>
     <string name="cancel">Cancel</string>
     <string name="confirm">Confirm</string>
+    <string name="edit">Edit</string>
     <string name="newlist">NewList</string>
     <string name="newtask">Add new task</string>
 </resources>
