@@ -27,13 +27,15 @@ public class TasklistPresenter implements TasklistContract.Presenter {
                 .from(TodoData.class)
                 .where(TodoData_Table.id.eq(id))
                 .querySingle();
-        TaskData task = new TaskData();
-        task.todo = todo;
-        task.content = title;
-        todo.tasks = new ArrayList<>();
-        todo.tasks.add(task);
-        todo.update();
-        todo.save();
+        {
+            TaskData task = new TaskData();
+            task.todo = todo;
+            task.content = title;
+            todo.tasks = new ArrayList<>();
+            todo.tasks.add(task);
+            todo.update();
+            todo.save();
+        }
         m_view.showTasklist(todo.getTasks());
     }
 
