@@ -25,6 +25,7 @@ public class TasklistFragment extends Fragment implements TasklistContract.View 
     private boolean m_editfinish = false;
     private TextView m_textEdit;
     private EditText m_titleText;
+    private TasklistAdapter<TaskData> m_adapter;
     private static final String TAG = "TasklistFragment";
 
     public static TasklistFragment newInstance() {
@@ -45,6 +46,9 @@ public class TasklistFragment extends Fragment implements TasklistContract.View 
         Log.e(TAG, "onViewCreated");
         TasklistActivity activity = (TasklistActivity)getActivity();
         m_todoId = activity.getId();
+        if (m_presenter != null) {
+            m_adapter = new TasklistAdapter<>(getContext(), m_presenter.queryTasklist(m_todoId));
+        }
     }
 
     @Override
