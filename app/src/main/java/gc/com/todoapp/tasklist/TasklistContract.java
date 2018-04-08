@@ -10,11 +10,12 @@ public interface TasklistContract {
 
     interface View extends BaseView<Presenter> {
         void showAddTasklist();
-        void showTasklist();
+        void showTasklist(List<TaskData> list);
     }
 
     interface Presenter extends BasePresenter {
-        void addTask();
+        void addTask(long id, String title);
+        void loadTasklist(long id);
         List<TaskData> queryTasklist(long id);
     }
 

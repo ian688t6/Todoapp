@@ -21,6 +21,7 @@ import gc.com.todoapp.db.TaskData;
 
 public class TasklistFragment extends Fragment implements TasklistContract.View {
     private TasklistContract.Presenter m_presenter;
+    private long m_todoId = 0;
     private boolean m_editfinish = false;
     private TextView m_textEdit;
     private EditText m_titleText;
@@ -42,19 +43,13 @@ public class TasklistFragment extends Fragment implements TasklistContract.View 
         super.onViewCreated(view, savedInstanceState);
 
         Log.e(TAG, "onViewCreated");
-        if (m_presenter != null) {
-            List<TaskData>list =  m_presenter.queryTasklist(((TasklistActivity)getActivity()).getId());
-            for (TaskData t : list) {
-                Log.e(TAG, t.toString());
-            }
-        }
+        TasklistActivity activity = (TasklistActivity)getActivity();
+        m_todoId = activity.getId();
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        TasklistActivity activity = (TasklistActivity)context;
-        Log.e(TAG, "id " + String.valueOf(activity.getId()));
     }
 
     @Nullable
@@ -68,9 +63,10 @@ public class TasklistFragment extends Fragment implements TasklistContract.View 
                 Log.e(TAG, "click edit");
                 if (m_editfinish) {
                     String title = m_titleText.getText().toString();
+                    Log.e(TAG, "title: " + title);
                     m_titleText.setText(null);
                     m_titleText.clearFocus();
-                    Log.e(TAG, "title: " + title);
+                    m_presenter.addTask(m_todoId, title);
                 }
             }
         });
@@ -117,6 +113,10 @@ public class TasklistFragment extends Fragment implements TasklistContract.View 
     @Override
     public void onResume() {
         super.onResume();
+        Log.e(TAG, "onResume");
+        if (m_presenter != null) {
+            m_presenter.loadTasklist(((TasklistActivity)getActivity()).getId());
+        }
     }
 
     @Override
@@ -125,8 +125,11 @@ public class TasklistFragment extends Fragment implements TasklistContract.View 
     }
 
     @Override
-    public void showTasklist() {
-
+    public void showTasklist(List<TaskData> list) {
+        Log.e(TAG, "showTasklist");
+        for (TaskData task : list) {
+            Log.e(TAG, "task = " + task.content);
+        }
     }
 
     @Override
