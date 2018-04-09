@@ -100,6 +100,9 @@ public class TodolistAdapter<Data> extends RecyclerView.Adapter<TodolistAdapter.
     @Override
     public void onClick(View v) {
         TodolistViewHolder viewHolder = (TodolistViewHolder) v.getTag(R.id.tag_recycler_holder);
+        if (viewHolder.swipeLayout.getOpenStatus() == SwipeLayout.Status.Middle) {
+            return;
+        }
         int pos = viewHolder.getAdapterPosition();
         Data data = m_list.get(pos);
         Log.e(TAG, "click view pos" + String.valueOf(pos) + " data: " + data.toString());

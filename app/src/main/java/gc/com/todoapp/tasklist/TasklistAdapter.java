@@ -69,7 +69,6 @@ public class TasklistAdapter<Data> extends RecyclerView.Adapter<TasklistAdapter.
             public void onClick(View v) {
                 Log.e(TAG, "imageButtonDelete click " + holder.textView.getText());
                 if (m_callback != null) {
-                    //m_callback.itemDelete(position);
                     m_callback.itemDel(data);
                 }
                 m_list.remove(position);

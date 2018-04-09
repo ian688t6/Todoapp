@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gc.com.todoapp.db.TaskData;
-import gc.com.todoapp.db.TaskData_Table;
 import gc.com.todoapp.db.TodoData;
 import gc.com.todoapp.db.TodoData_Table;
 
