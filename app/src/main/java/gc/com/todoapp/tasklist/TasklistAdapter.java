@@ -35,6 +35,14 @@ public class TasklistAdapter<Data> extends RecyclerView.Adapter<TasklistAdapter.
 
     }
 
+    public void replaceData(List<Data> list) {
+        m_list = list;
+        for (Data task : m_list) {
+            Log.e(TAG, task.toString());
+        }
+        notifyDataSetChanged();
+    }
+
     @Override
     public TasklistViewHolder<Data> onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(m_context).inflate(R.layout.tasklist_item, parent, false);
@@ -45,11 +53,11 @@ public class TasklistAdapter<Data> extends RecyclerView.Adapter<TasklistAdapter.
 
     @Override
     public void onBindViewHolder(final TasklistViewHolder<Data> holder, final int position) {
-        final TodoData data = (TodoData) m_list.get(position);
-        holder.textView.setText(data.title);
-        for (TaskData task : data.tasks) {
-            Log.e(TAG, "task: " + task.content);
-        }
+        final TaskData data = (TaskData) m_list.get(position);
+        holder.textView.setText(data.content);
+
+        Log.e(TAG, "task: " + data.content);
+
         holder.imageButtonSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

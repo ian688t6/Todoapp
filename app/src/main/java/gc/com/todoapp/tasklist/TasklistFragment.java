@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -25,6 +28,7 @@ public class TasklistFragment extends Fragment implements TasklistContract.View 
     private boolean m_editfinish = false;
     private TextView m_textEdit;
     private EditText m_titleText;
+    private RecyclerView m_recyclerView;
     private TasklistAdapter<TaskData> m_adapter;
     private static final String TAG = "TasklistFragment";
 
@@ -44,10 +48,12 @@ public class TasklistFragment extends Fragment implements TasklistContract.View 
         super.onViewCreated(view, savedInstanceState);
 
         Log.e(TAG, "onViewCreated");
+
         TasklistActivity activity = (TasklistActivity)getActivity();
         m_todoId = activity.getId();
         if (m_presenter != null) {
             m_adapter = new TasklistAdapter<>(getContext(), m_presenter.queryTasklist(m_todoId));
+            m_recyclerView.setAdapter(m_adapter);
         }
     }
 
@@ -60,6 +66,7 @@ public class TasklistFragment extends Fragment implements TasklistContract.View 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_tasklist, container, false);
+        Log.e(TAG, "onCreateView");
         m_textEdit = root.findViewById(R.id.tv_edit);
         m_textEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +112,8 @@ public class TasklistFragment extends Fragment implements TasklistContract.View 
             }
         });
 
+        initRecycleView(root);
+
         return root;
     }
 
@@ -123,6 +132,13 @@ public class TasklistFragment extends Fragment implements TasklistContract.View 
         }
     }
 
+    private void initRecycleView(View root) {
+        m_recyclerView = root.findViewById(R.id.tasklist_recycleview);
+        m_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        m_recyclerView.setHasFixedSize(true);
+        m_recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+    }
+
     @Override
     public void showAddTasklist() {
 
@@ -134,6 +150,7 @@ public class TasklistFragment extends Fragment implements TasklistContract.View 
         for (TaskData task : list) {
             Log.e(TAG, "task = " + task.content);
         }
+        m_adapter.replaceData(list);
     }
 
     @Override
