@@ -31,7 +31,9 @@ public class TasklistPresenter implements TasklistContract.Presenter {
             TaskData task = new TaskData();
             task.todo = todo;
             task.content = title;
-            todo.tasks = new ArrayList<>();
+            if (todo.tasks == null) {
+                todo.tasks = new ArrayList<>();
+            }
             todo.tasks.add(task);
             todo.update();
             todo.save();

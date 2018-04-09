@@ -37,9 +37,9 @@ public class TasklistAdapter<Data> extends RecyclerView.Adapter<TasklistAdapter.
 
     public void replaceData(List<Data> list) {
         m_list = list;
-        for (Data task : m_list) {
-            Log.e(TAG, task.toString());
-        }
+//        for (Data task : m_list) {
+//            Log.e(TAG, task.toString());
+//        }
         notifyDataSetChanged();
     }
 
