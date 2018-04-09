@@ -15,6 +15,7 @@ public interface TasklistContract {
 
     interface Presenter extends BasePresenter {
         void addTask(long id, String title);
+        void delTask(long id, int position);
         void loadTasklist(long id);
         List<TaskData> queryTasklist(long id);
     }

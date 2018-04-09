@@ -42,6 +42,25 @@ public class TasklistPresenter implements TasklistContract.Presenter {
     }
 
     @Override
+    public void delTask(long id, int position) {
+        TodoData todo = SQLite.select()
+                .from(TodoData.class)
+                .where(TodoData_Table.id.eq(id))
+                .querySingle();
+
+        if (todo.tasks == null || todo.tasks.size() == 0) {
+            Log.e(TAG, "delTask todo tasks null");
+            return;
+        }
+        Log.e(TAG, "deltask todo task " + String.valueOf(position));
+        TaskData task = todo.tasks.get(position);
+        task.delete();
+        todo.tasks.remove(task);
+        todo.update();
+        todo.save();
+    }
+
+    @Override
     public void loadTasklist(long id) {
         TodoData todo = SQLite.select()
                 .from(TodoData.class)
@@ -49,7 +68,6 @@ public class TasklistPresenter implements TasklistContract.Presenter {
                 .querySingle();
         m_view.showTasklist(todo.getTasks());
     }
-
 
     @Override
     public List<TaskData> queryTasklist(long id) {

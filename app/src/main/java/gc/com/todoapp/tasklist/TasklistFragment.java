@@ -53,6 +53,18 @@ public class TasklistFragment extends Fragment implements TasklistContract.View 
         m_todoId = activity.getId();
         if (m_presenter != null) {
             m_adapter = new TasklistAdapter<>(getContext(), m_presenter.queryTasklist(m_todoId));
+            m_adapter.setCallback(new TasklistAdapter.TasklistAdapterCallback() {
+                @Override
+                public void onClick(Object o) {
+
+                }
+
+                @Override
+                public void itemDelete(int position) {
+                    Log.e(TAG, "itemDelete " + String.valueOf(position));
+                    m_presenter.delTask(m_todoId, position);
+                }
+            });
             m_recyclerView.setAdapter(m_adapter);
         }
     }
@@ -160,4 +172,5 @@ public class TasklistFragment extends Fragment implements TasklistContract.View 
             m_presenter = presenter;
         }
     }
+
 }

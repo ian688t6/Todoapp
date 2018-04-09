@@ -23,6 +23,7 @@ import gc.com.todoapp.db.TodoData_Table;
 public class TasklistAdapter<Data> extends RecyclerView.Adapter<TasklistAdapter.TasklistViewHolder<Data>> {
     private Context m_context;
     private List<Data> m_list;
+    private TasklistAdapterCallback m_callback;
     private static final String TAG = "TasklistAdapter";
 
     public TasklistAdapter(Context context, List<Data> list) {
@@ -32,14 +33,11 @@ public class TasklistAdapter<Data> extends RecyclerView.Adapter<TasklistAdapter.
 
 
     public void setCallback(TasklistAdapterCallback callback) {
-
+        m_callback = callback;
     }
 
     public void replaceData(List<Data> list) {
         m_list = list;
-//        for (Data task : m_list) {
-//            Log.e(TAG, task.toString());
-//        }
         notifyDataSetChanged();
     }
 
@@ -68,6 +66,9 @@ public class TasklistAdapter<Data> extends RecyclerView.Adapter<TasklistAdapter.
             @Override
             public void onClick(View v) {
                 Log.e(TAG, "imageButtonDelete click " + holder.textView.getText());
+                if (m_callback != null) {
+                    m_callback.itemDelete(position);
+                }
                 m_list.remove(position);
                 notifyDataSetChanged();
             }
@@ -86,8 +87,9 @@ public class TasklistAdapter<Data> extends RecyclerView.Adapter<TasklistAdapter.
     }
 
 
-    public interface TasklistAdapterCallback {
-
+    public interface TasklistAdapterCallback<Data> {
+        void onClick(Data data);
+        void itemDelete(int position);
     }
 
 
