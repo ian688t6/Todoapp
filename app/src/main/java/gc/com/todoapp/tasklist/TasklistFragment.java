@@ -58,10 +58,10 @@ public class TasklistFragment extends Fragment implements TasklistContract.View 
 
                 }
 
+
                 @Override
-                public void itemDelete(int position) {
-                    Log.e(TAG, "itemDelete " + String.valueOf(position));
-                    m_presenter.delTask(m_todoId, position);
+                public void itemDel(Object o) {
+                    m_presenter.delTask(m_todoId ,(TaskData)o);
                 }
             });
             m_recyclerView.setAdapter(m_adapter);

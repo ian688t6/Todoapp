@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gc.com.todoapp.db.TaskData;
+import gc.com.todoapp.db.TaskData_Table;
 import gc.com.todoapp.db.TodoData;
 import gc.com.todoapp.db.TodoData_Table;
 
@@ -31,6 +32,7 @@ public class TasklistPresenter implements TasklistContract.Presenter {
             TaskData task = new TaskData();
             task.todo = todo;
             task.title = title;
+            task.save();
             if (todo.tasks == null) {
                 todo.tasks = new ArrayList<>();
             }
@@ -42,7 +44,7 @@ public class TasklistPresenter implements TasklistContract.Presenter {
     }
 
     @Override
-    public void delTask(long id, int position) {
+    public void delTask(long id, TaskData task) {
         TodoData todo = SQLite.select()
                 .from(TodoData.class)
                 .where(TodoData_Table.id.eq(id))
@@ -52,12 +54,11 @@ public class TasklistPresenter implements TasklistContract.Presenter {
             Log.e(TAG, "delTask todo tasks null");
             return;
         }
-        Log.e(TAG, "deltask todo task " + String.valueOf(position));
-        TaskData task = todo.tasks.get(position);
+
+        Log.e(TAG, "deltask task id " + String.valueOf(task.id));
         task.delete();
         todo.tasks.remove(task);
         todo.update();
-        todo.save();
     }
 
     @Override
