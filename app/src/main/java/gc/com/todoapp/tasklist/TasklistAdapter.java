@@ -54,9 +54,9 @@ public class TasklistAdapter<Data> extends RecyclerView.Adapter<TasklistAdapter.
     @Override
     public void onBindViewHolder(final TasklistViewHolder<Data> holder, final int position) {
         final TaskData data = (TaskData) m_list.get(position);
-        holder.textView.setText(data.content);
+        holder.textView.setText(data.title);
 
-        Log.e(TAG, "task: " + data.content);
+        Log.e(TAG, "task: " + data.title);
 
         holder.imageButtonSettings.setOnClickListener(new View.OnClickListener() {
             @Override

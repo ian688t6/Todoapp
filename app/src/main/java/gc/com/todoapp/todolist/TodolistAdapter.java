@@ -63,7 +63,7 @@ public class TodolistAdapter<Data> extends RecyclerView.Adapter<TodolistAdapter.
         final TodoData data = (TodoData) m_list.get(position);
         holder.textView.setText(data.title);
         for (TaskData task : data.tasks) {
-            Log.e(TAG, "task: " + task.content);
+            Log.e(TAG, "task: " + task.title);
         }
         holder.imageButtonSettings.setOnClickListener(new View.OnClickListener() {
             @Override

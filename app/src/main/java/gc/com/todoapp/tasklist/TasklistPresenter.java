@@ -30,7 +30,7 @@ public class TasklistPresenter implements TasklistContract.Presenter {
         {
             TaskData task = new TaskData();
             task.todo = todo;
-            task.content = title;
+            task.title = title;
             if (todo.tasks == null) {
                 todo.tasks = new ArrayList<>();
             }

@@ -148,7 +148,7 @@ public class TasklistFragment extends Fragment implements TasklistContract.View 
     public void showTasklist(List<TaskData> list) {
         Log.e(TAG, "showTasklist");
         for (TaskData task : list) {
-            Log.e(TAG, "task = " + task.content);
+            Log.e(TAG, "task = " + task.title);
         }
         m_adapter.replaceData(list);
     }

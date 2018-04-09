@@ -16,6 +16,9 @@ public class TaskData extends BaseModel {
     public TodoData todo;
 
     @Column
+    public String title;
+
+    @Column
     public String content;
 
     @Override
@@ -23,6 +26,6 @@ public class TaskData extends BaseModel {
         return "Task {" +
                 "id=" + id +
                 ", todo=" + todo +
-                ", content='" + content  + '}';
+                ", title='" + title  + '}';
     }
 }
