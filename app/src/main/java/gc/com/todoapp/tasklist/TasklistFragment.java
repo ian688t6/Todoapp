@@ -48,7 +48,6 @@ public class TasklistFragment extends Fragment implements TasklistContract.View 
         super.onViewCreated(view, savedInstanceState);
 
         Log.e(TAG, "onViewCreated");
-
         TasklistActivity activity = (TasklistActivity)getActivity();
         m_todoId = activity.getId();
         if (m_presenter != null) {
@@ -172,5 +171,4 @@ public class TasklistFragment extends Fragment implements TasklistContract.View 
             m_presenter = presenter;
         }
     }
-
 }

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -73,7 +74,17 @@ public class TasklistAdapter<Data> extends RecyclerView.Adapter<TasklistAdapter.
                 notifyDataSetChanged();
             }
         });
+        holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Log.e(TAG, "isChecked " + String.valueOf(isChecked));
+                if (isChecked) {
 
+                } else {
+
+                }
+            }
+        });
     }
 
     @Override
